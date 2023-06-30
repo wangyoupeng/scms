@@ -6,6 +6,6 @@ npm install
 npm start
 
 ```
-地址： localhost:8080
+地址： localhost:8080/#/login
 用户名： wyp  
 密码：123456
