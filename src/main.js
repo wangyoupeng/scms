@@ -16,14 +16,30 @@ Vue.use(Global);
 
 import Axios from 'axios';
 Axios.interceptors.request.use(
-  config => {
-    console.log("aaaaa")
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
-    console.log("bbbbbb", config)
-    return config;
+  request => {
+    console.log("aa",request)
+    request.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+    return request;
   },
   error => {
+    console.log("aaaaa",error)
     console.log("cccc", error)
+    return Promise.reject(error);
+  }
+);
+// 响应拦截器
+Axios.interceptors.response.use(
+  response => {
+    // 对响应数据进行处理
+    return response;
+  },
+  error => {
+    // 如果返回了401状态码，进行重定向到登录页面
+    if (error.response && error.response.status === 401) {
+      // this.$router.push('/login'); // 重定向到登录页面
+      // window.location.href = '/login'; // 重定向到登录页面
+      this.$router.push("/Login");
+    }
     return Promise.reject(error);
   }
 );
@@ -52,12 +68,6 @@ Vue.filter('dateFormat', (dataStr) => {
 //全局组件 to delete
 import MyMenu from './components/MyMenu';
 Vue.component(MyMenu.name, MyMenu);
-// import MyList from './components/MyList';
-// Vue.component(MyList.name, MyList);
-// import MyLogin from './components/MyLogin';
-// Vue.component(MyLogin.name, MyLogin);
-// import MyRegister from './components/MyRegister';
-// Vue.component(MyRegister.name, MyRegister);
 
 Vue.config.productionTip = false;
 

@@ -9,10 +9,16 @@ Vue.use(Router)
 const routes = [
   // ---------------------- CMS router --------------
   {
+    path: '/',
+    name: 'Index',
+    component: () => import('../views/login/Login.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/login/Login.vue')
   },
+  
   {
     path: '/goods',
     name: 'Goods',

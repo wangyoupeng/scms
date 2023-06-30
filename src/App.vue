@@ -34,7 +34,8 @@ import MyMenu from "./components/MyMenu.vue";
 
 export default {
   beforeUpdate() {
-    this.show_menu = this.$route.fullPath != "/login"
+    console.log("---------this.$route.fullPath:: ",this.$route.fullPath)
+    this.show_menu =( this.$route.fullPath != "/login" && this.$route.fullPath != "/")
   },
   components: {
     "MyMenu": MyMenu,
