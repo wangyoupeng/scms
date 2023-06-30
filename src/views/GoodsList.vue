@@ -16,7 +16,13 @@
         </template>
       </el-table-column>
       <el-table-column prop="name" label="商品名称"></el-table-column>
-      <el-table-column prop="price" label="商品价格"></el-table-column>
+      <!-- <el-table-column prop="price" label="商品价格"></el-table-column> -->
+      <el-table-column prop="price" label="商品价格/¥">
+        <template slot-scope="{ row }">
+          {{ formatPrice(row.price) }}
+        </template>
+      </el-table-column>
+
       <el-table-column prop="stock" label="商品库存"></el-table-column>
       <el-table-column label="操作">
         
@@ -115,7 +121,11 @@ export default {
       //   .catch(error => {
       //     console.log(error);
       //   });
-    }
+    },
+    formatPrice(price) { // 分转元
+      // 处理 name 的格式，例如转换为大写字母
+      return (price/100).toFixed(2)
+    },
   },
   // 在从详情页返回时重新加载列表数据
   activated() {
