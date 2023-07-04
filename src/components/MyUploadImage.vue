@@ -50,7 +50,10 @@
         imageUrl: '', 
       };
     },
-    created() {
+    created(){
+
+    },
+    activated() {
       this.imageUrl = this.imageUrlOld
     },
     methods: {

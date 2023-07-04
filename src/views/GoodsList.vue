@@ -28,7 +28,7 @@
         
         <template slot-scope="{ row }">
           <el-button type="text" size="small" @click="handleEdit(row)">编辑</el-button>
-          <el-button type="text" size="small" @click="handleDelete(row)">删除</el-button>
+          <el-button type="text" size="small" @click="handleDelete(row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -100,9 +100,18 @@ export default {
       })
       // 商品编辑逻辑
     },
-    handleDelete(goods) {
+    handleDelete(goods_id) {
       // 商品删除逻辑
-      this.goodsList.splice(this.goodsList.indexOf(goods), 1)
+      // this.goodsList.splice(this.goodsList.indexOf(goods_id), 1)
+      const params = { goods_id }
+      this.$axios.post('/api/goods/delete',{ params })
+      .then(res => {
+        this.$router.push('/goods/list')
+        res
+      })
+      .catch(error => {
+        console.log(error);
+      });
     },
     handleGoodsAdd() {
       this.$router.push('/goods/add')

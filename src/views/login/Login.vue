@@ -1,5 +1,10 @@
 <template>
 	<div id="login" v-if="show">
+    <div>
+					<el-row style="text-align:right">
+						<el-button type="primary" class="btn rgiht" @click="jump_regist()">注册</el-button>
+					</el-row>
+				</div>
 		<div class="login_wrap">
 
 			<div class="wenzi">CMS</div>
@@ -14,7 +19,7 @@
 					</el-row>
 				</div>
 			</form>
-
+      
 		</div>
 	</div>
 </template>
@@ -30,6 +35,9 @@
 			}
 		},
 		methods: {
+      jump_regist(){
+        this.$router.push('/regist')
+      },
 			sub(pwd) {
 				console.log(pwd)
 				// var that = this;

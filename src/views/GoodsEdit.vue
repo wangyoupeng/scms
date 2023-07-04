@@ -63,12 +63,20 @@
         }
       }
     },
-    created() {
+    create(){
       console.log('====000')
       let editItem = this.$route.params.goodsItem;
       console.log("====== 1111 editItem:", editItem)
       this.form = {... editItem}
       this.editItem = {... editItem}
+      
+    },
+    activated() {
+      let editItem = this.$route.params.goodsItem;
+      this.form = {... editItem}
+      this.editItem = {... editItem}
+      // console.log('--------- 111------ :: editItem',this.editItem )
+      // console.log('--------- 222------ :: form',this.form )
     },
     methods: {
       handleUploadImageSuccess(imageInfo){
