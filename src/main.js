@@ -31,15 +31,13 @@ Axios.interceptors.request.use(
 Axios.interceptors.response.use(
   response => {
     // 对响应数据进行处理
+    if (response.data.status === 401) {
+      window.location.href = '/#/login'
+    }
     return response;
   },
   error => {
-    // 如果返回了401状态码，进行重定向到登录页面
-    if (error.response && error.response.status === 401) {
-      // this.$router.push('/login'); // 重定向到登录页面
-      // window.location.href = '/login'; // 重定向到登录页面
-      this.$router.push("/Login");
-    }
+    
     return Promise.reject(error);
   }
 );

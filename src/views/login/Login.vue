@@ -86,7 +86,7 @@
 
 	.login_wrap {
 		margin: 180px auto 0 auto;
-		min-height: 420px;
+		min-height: 320px;
 		max-width: 420px;
 		padding: 40px;
 		margin-left: auto;
