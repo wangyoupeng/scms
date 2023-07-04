@@ -17,13 +17,10 @@ Vue.use(Global);
 import Axios from 'axios';
 Axios.interceptors.request.use(
   request => {
-    console.log("aa",request)
     request.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
     return request;
   },
   error => {
-    console.log("aaaaa",error)
-    console.log("cccc", error)
     return Promise.reject(error);
   }
 );

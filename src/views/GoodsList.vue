@@ -64,7 +64,6 @@ export default {
       .then(res => {
         this.goodsList = res.data.list;
         this.total = res.data.total;
-        console.log('------------ this: ', res)
       })
       .catch(error => {
         console.log("errorrrr:::: ", error);
@@ -102,12 +101,14 @@ export default {
     },
     handleDelete(goods_id) {
       // 商品删除逻辑
-      // this.goodsList.splice(this.goodsList.indexOf(goods_id), 1)
-      const params = { goods_id }
-      this.$axios.post('/api/goods/delete',{ params })
-      .then(res => {
-        this.$router.push('/goods/list')
-        res
+      this.$axios.post('/api/goods/delete',{ goods_id })
+      .then((res) => {
+        // this.$router.push('/goods')
+        if(res.data.message == 'ok'){
+          this.$message.success('删除成功')
+          this.handleSearch()
+        }
+       
       })
       .catch(error => {
         console.log(error);
@@ -117,23 +118,12 @@ export default {
       this.$router.push('/goods/add')
     },
     handleCurrentChange(val) {
-      console.log('---val:', val)
+      // console.log('---val:', val)
       this.currentPage = val
       this.handleSearch()
-
-      // const params = { filterText: this.filterText, pageSize: this.pageSize, currentPage: this.currentPage }
-      // this.$axios.get('/api/goods',{ params })
-      //   .then(res => {
-      //     this.goodsList = res.data.list;
-      //     this.total = res.data.total;
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
     },
     formatPrice(price) { // 分转元
-      // 处理 name 的格式，例如转换为大写字母
-      return (price/100).toFixed(2)
+      return (price / 100).toFixed(2)
     },
   },
   // 在从详情页返回时重新加载列表数据
