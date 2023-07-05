@@ -39,7 +39,11 @@ const routes = [
     name: 'GoodsEdit',
     component: () => import('../views/GoodsEdit.vue')
   },
-  
+  {
+    path: '/orders',
+    name: 'Orders',
+    component: () => import('../views/OrdersList.vue')
+  },
 ]
 
 const router = new Router({
