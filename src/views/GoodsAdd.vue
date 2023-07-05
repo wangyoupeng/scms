@@ -10,8 +10,8 @@
       <el-form-item label="商品描述" prop="description">
         <el-input v-model="form.description"></el-input>
       </el-form-item>
-      <el-form-item label="商品价格" prop="price">
-        <el-input type="number" v-model="form.price"></el-input>
+      <el-form-item label="商品价格/元" prop="price">
+        <el-input type="number" v-model="form.price" :value="form.price | decimalFilter"></el-input>
       </el-form-item>
       <el-form-item label="商品库存" prop="stock">
         <el-input type="number" v-model="form.stock"></el-input>
@@ -28,6 +28,12 @@
   export default {
     components: {
       MyUploadImage
+    },
+    decimalFilter: function(value) {
+      if (!isNaN(value)) {
+        return parseFloat(value).toFixed(2);
+      }
+      return value;
     },
     data() {
       return {
