@@ -15,6 +15,16 @@
           {{ formatPrice(row.price) }}
         </template>
       </el-table-column>
+      <el-table-column prop="status" label="订单状态">
+        <template slot-scope="{ row }">
+          {{ row.status || '已支付' }}
+        </template>
+      </el-table-column>
+      <el-table-column label="操作">
+        <template  slot-scope="{ row }">
+          <el-button type="warning" size="small" @click="removeItem( row )">修改</el-button>
+        </template>
+      </el-table-column>
     </el-table>
     <el-pagination
       :page-size="pageSize"
