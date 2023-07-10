@@ -39,7 +39,7 @@
       return {
         form: {
           id: 0,
-          imageUrl: '',
+          imageUrl: 'images/1688957642054_gaifan.png',
           name: '',
           description: '',
           price: 0,
@@ -72,8 +72,6 @@
         this.form.imageUrl = imageInfo.imageUrl || ""
       },
       submitForm(formName) {
-        // console.log("-----111------- formName: ", formName)
-        // console.log("--------22---- this.$refs:", typeof this.$refs, this.$refs)
         this.$refs[formName].validate(valid => {
           if (valid) {
             const forData = new FormData();

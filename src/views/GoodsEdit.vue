@@ -2,7 +2,7 @@
   <div>
     <el-form :model="form" :rules="rules" ref="form" label-width="100px">
       <el-form-item label="图片" prop="imageUrl">
-        <MyUploadImage @upload-image-success="handleUploadImageSuccess" :imageUrlOld="form.imageUrl"></MyUploadImage>
+        <MyUploadImage @upload-image-success="handleUploadImageSuccess" :imageUrlOld="$route.params.goodsItem.imageUrl"></MyUploadImage>
       </el-form-item>
       <el-form-item label="商品名称" prop="name">
         <el-input v-model="form.name"></el-input>
@@ -72,9 +72,7 @@
       }
     },
     create(){
-      console.log('====000')
       let editItem = this.$route.params.goodsItem;
-      console.log("====== 1111 editItem:", editItem)
       this.form = {... editItem}
       this.editItem = {... editItem}
       
@@ -91,8 +89,6 @@
         this.form.imageUrl = imageInfo.imageUrl || ""
       },
       submitForm(formName) {
-        // console.log("-----111------- formName: ", formName)
-        // console.log("--------22---- this.$refs:", typeof this.$refs, this.$refs)
         this.$refs[formName].validate(valid => {
           if (valid) {
             const forData = {};

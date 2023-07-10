@@ -83,7 +83,6 @@ export default {
       .then(res => {
         this.goodsList = res.data.list;
         this.total = res.data.total;
-        console.log('------------ this: ', this.goodsList. this.tatal)
       })
       .catch(error => {
         console.log(error);

@@ -51,24 +51,23 @@
       };
     },
     created(){
-
+      this.imageUrl = this.imageUrlOld
+      console.log("---------333------:", this.imageUrl)
     },
     activated() {
       this.imageUrl = this.imageUrlOld
+      console.log("---------444------:", this.imageUrl)
     },
     methods: {
-      handleAvatarSuccess(res, file) {
-        console.log("-------00---- upload res:", res, file)
+      handleAvatarSuccess(res) {
         let fullImageUrl = `http://localhost:3000${res.data.url}`
         this.imageUrl = fullImageUrl
-        console.log("-------11---- upload imageUrl:", this.imageUrl)
         this.$emit('upload-image-success', {
           imageUrl: fullImageUrl, 
           time: new Date()
         });
       },
       beforeAvatarUpload(file) {
-        console.log("====== ", file)
         const typeFlag = file.type === 'image/jpeg' || file.type === 'image/png';
         const isLt2M = file.size / 1024 / 1024 < 10;
 
