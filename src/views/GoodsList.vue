@@ -89,7 +89,7 @@ export default {
       });
     },
     handleEdit(goodsItem) {
-      console.log(goodsItem)
+      console.log('============ goodsItem to edit', goodsItem)
       this.$router.push({
         name: 'GoodsEdit',
         params: {

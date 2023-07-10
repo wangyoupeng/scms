@@ -2,7 +2,7 @@
   <div>
     <el-form :model="form" :rules="rules" ref="form" label-width="100px">
       <el-form-item label="图片" prop="imageUrl">
-        <MyUploadImage @upload-image-success="handleUploadImageSuccess" :imageUrlOld="$route.params.goodsItem.imageUrl"></MyUploadImage>
+        <MyUploadImage @upload-image-success="handleUploadImageSuccess" :imageUrlOld="this.$route.params.goodsItem ? this.$route.params.goodsItem.imageUrl : ''"></MyUploadImage>
       </el-form-item>
       <el-form-item label="商品名称" prop="name">
         <el-input v-model="form.name"></el-input>
@@ -81,8 +81,6 @@
       let editItem = this.$route.params.goodsItem;
       this.form = {... editItem}
       this.editItem = {... editItem}
-      // console.log('--------- 111------ :: editItem',this.editItem )
-      // console.log('--------- 222------ :: form',this.form )
     },
     methods: {
       handleUploadImageSuccess(imageInfo){

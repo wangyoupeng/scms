@@ -52,11 +52,9 @@
     },
     created(){
       this.imageUrl = this.imageUrlOld
-      console.log("---------333------:", this.imageUrl)
     },
     activated() {
       this.imageUrl = this.imageUrlOld
-      console.log("---------444------:", this.imageUrl)
     },
     methods: {
       handleAvatarSuccess(res) {
