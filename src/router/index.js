@@ -44,6 +44,26 @@ const routes = [
     name: 'Orders',
     component: () => import('../views/OrdersList.vue')
   },
+  {
+    path: '/categories',
+    name: 'Categories',
+    component: () => import('../views/Categories.vue')
+  },
+  {
+    path: '/categories/add',
+    name: 'CategoriesAdd',
+    component: () => import('../views/CategoriesAdd.vue')
+  },
+  {
+    path: '/groups',
+    name: 'Groups',
+    component: () => import('../views/Groups.vue')
+  },
+  {
+    path: '/groups/add',
+    name: 'GroupsAdd',
+    component: () => import('../views/GroupsAdd.vue')
+  },
 ]
 
 const router = new Router({
