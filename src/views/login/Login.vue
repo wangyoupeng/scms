@@ -25,6 +25,15 @@
 </template>
 
 <script>
+  // 加密函数
+  import crypto from'crypto';
+  function encryptText(username,password) {
+    let secretKey = username + 'bawei'
+    const cipher = crypto.createCipher('aes-256-cbc', secretKey);
+    let encrypted = cipher.update(password, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    return encrypted;
+  }
 	export default {
 		name: 'Login',
 		data() {
@@ -43,11 +52,14 @@
 				// var that = this;
 				const username = this.user
         this.$axios.post('/api/login', {
-          username, pwd
+          username, pwd: encryptText(username, pwd) // 密文传递
         }).then((res) => {
           // console.log("------ resss: ", res)
           if(res.data && res.data.message == "ok"){
             if(res.data.token) localStorage.setItem('token', res.data.token)
+            if(res.data.tokenExp) localStorage.setItem('tokenExp', res.data.tokenExp)
+            if(res.data.refreshToken) localStorage.setItem('refreshToken', res.data.refreshToken)
+            if(res.data.refreshTokenExp) localStorage.setItem('refreshTokenExp', res.data.refreshTokenExp)
             if(res.data.userInfo) localStorage.setItem('userInfo', res.data.userInfo)
             this.$message.success('登录成功')
               setTimeout(() => {
