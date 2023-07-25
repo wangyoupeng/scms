@@ -11,7 +11,7 @@
         <el-input v-model="form.description"></el-input>
       </el-form-item>
       <el-form-item label="商品价格/元" prop="price">
-        <el-input type="number" v-model="form.price" :value="form.price | decimalFilter"></el-input>
+        <el-input v-model="form.price" :value="form.price | decimalFilter"></el-input>
       </el-form-item>
       <el-form-item label="商品库存" prop="stock">
         <el-input type="number" v-model="form.stock"></el-input>
@@ -73,12 +73,14 @@
     },
     create(){
       let editItem = this.$route.params.goodsItem;
+      editItem.price = this.$route.params.goodsItem.price / 100
       this.form = {... editItem}
       this.editItem = {... editItem}
       
     },
     activated() {
       let editItem = this.$route.params.goodsItem;
+      editItem.price = this.$route.params.goodsItem.price / 100
       this.form = {... editItem}
       this.editItem = {... editItem}
     },
@@ -86,6 +88,9 @@
       handleUploadImageSuccess(imageInfo){
         this.form.imageUrl = imageInfo.imageUrl || ""
       },
+      // formatPrice(price) { // 分转元
+      //   return (price / 100).toFixed(2)
+      // },
       submitForm(formName) {
         this.$refs[formName].validate(valid => {
           if (valid) {
