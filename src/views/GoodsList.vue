@@ -100,7 +100,7 @@ export default {
     },
     handleDelete(goods_id) {
       // 商品删除逻辑
-      this.$axios.post('/api/goods/delete',{ goods_id })
+      this.$axios.delete('/api/goods/delete',{ goods_id })
       .then((res) => {
         // this.$router.push('/goods')
         if(res.data.message == 'ok'){

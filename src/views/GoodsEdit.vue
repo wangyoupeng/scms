@@ -107,7 +107,7 @@
             }
             // 发送创建商品请求
             this.$axios
-            .post("/api/goods/edit",forData)
+            .put("/api/goods/edit",forData)
             .then(res => {
               console.log("--------333---- axios res:: ", res)
               this.$message.success('修改成功')
